@@ -1,0 +1,5 @@
+.img-custom {
+  width: 300px;        /* Ajuste la taille */
+  border-radius: 20px; /* Arrondi plus fort */
+  border: 2px solid #333;
+}
