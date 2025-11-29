@@ -3,3 +3,18 @@
   border-radius: 20px; /* Arrondi plus fort */
   border: 2px solid #333;
 }
+.img-custom-large {
+  width: 300px;        /* Ajuste la taille */
+  border-radius: 20px; /* Arrondi plus fort */
+  border: 2px solid #333;
+}
+.row {
+  margin-bottom: 20px; /* Espace entre les lignes */
+}
+.form-container {
+  margin-bottom: 30px; /* Espace entre les formulaires */
+}
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+}
