@@ -77,7 +77,7 @@ try {
                 <!-- Chaque slide : la première (index 0) a la classe "active" -->
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     
-                    <!-- Image du livre (sans légende) -->
+                    <!-- Image du livre -->
                     <img src="covers/<?= htmlspecialchars($livre['photo']) ?>" 
                          class="d-block w-100" 
                          alt="<?= htmlspecialchars($livre['titre']) ?>">
