@@ -12,36 +12,28 @@
     <div class="container-fluid">
         <div class="row">
             <!-- barre de recherche -->
-            <div class="col-sm-9">
-                <div class="container mt-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Rechercher un livre qui vous plaît">
-                        <button class="btn btn-outline-secondary" type="button" placeholder="Rechercher">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- photo de Moulinsart -->
-            <div class="col-sm-3">
-                <img src="moulinssart2.jpg" class="rounded" alt="Cinque Terre" width="300" height="245">
-            </div>
-        </div>```
-    <div class="row">
-        <!-- le carrousel -->
-        <div class="col-sm-9">
-            <?php include 'caroussel.php'; ?> 
-            carroussel / résultat de la recherche / pages d'admin (ajout d'un livre)
-        </div>
-
-        <!-- formulaire d'inscription à importer -->
-        <div class="col-sm-3">
-            <?php include 'inscription.php'; ?>
-            formulaire de connexion / profil connecté (include)
+            <?php include('recherche.php') ?>
         </div>
     </div>
-</div>
-```
+    <div class="row">
+        <div class="col text-end">
+            <img src="moulinssart2.jpg" class="rounded" alt="Cinque Terre" width="200" height="145">
+        </div>
+    </div>
+    <div class="row">
+        <div class="row">
+            <!-- le carrousel -->
+            <div class="col-sm-9">
+                <?php include 'caroussel.php'; ?> 
+                <!-- résultat de la recherche / pages d'admin (ajout d'un livre)-->
+            </div>
 
+            <!-- formulaire d'inscription à importer -->
+            <div class="col-sm-3">
+                <?php include 'inscription.php'; ?>
+                formulaire de connexion / profil connecté (include)
+            </div>
+        </div>
+    </div>
 </body>
 </html>

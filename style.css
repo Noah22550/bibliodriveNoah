@@ -1,47 +1,40 @@
-
-body{
-  background-color: #FFFCF5;
-}
-.img-custom {
-  width: 100px;        /* Ajuste la taille */
-  border-radius: 20px; /* Arrondi plus fort */
-  border: 2px solid #333;
-}
-.img-custom-large {
-  width: 300px;        /* Ajuste la taille */
-  border-radius: 20px; /* Arrondi plus fort */
-  border: 2px solid #333;
-}
-.row {
-  margin-bottom: 20px; /* Espace entre les lignes */
-}
-.form-container {
-  margin-bottom: 30px; /* Espace entre les formulaires */
-}
-/* Limite la largeur du carrousel et le centre */
+/* --- Carrousel s'adapte à la taille réelle des images --- */
 #carouselLivres {
-    max-width: 400px;        /* Largeur adaptée aux couvertures */
-    margin: 0 auto;          /* Centre le carrousel horizontalement */
+    width: fit-content;               /* largeur = image */
+    margin-left: auto;
+    margin-right: auto;               /* centré */
 }
 
-/* Style pour les images du carrousel */
-.carousel-item img {
-    height: 550px;                     /* Hauteur pour format livre */
-    object-fit: cover;                 /* Remplit l'espace sans déformer */
-    background: #f8f9fa;               /* Fond gris clair si image manquante */
-    border-radius: 8px;                /* Coins légèrement arrondis */
+.carousel-inner {
+    width: 100%;
 }
 
-/* Réduit l'espacement au-dessus du carrousel */
-.mt-2 {
-    margin-top: 0.5rem;
+.carousel-inner img {
+    display: block;
+    width: auto;                      /* ne pas étirer l’image */
+    height: auto;                     /* garder proportions */
+    max-height: none;                 /* ici = hauteur naturelle */
+    max-width: 100%;                  /* évite dépassement écran */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Titre du carrousel */
-h2.text-center {
-    font-size: 1.5rem;
-    color: #333;
+/* Empêche Bootstrap de forcer une hauteur */
+.carousel-item {
+    position: relative;
+    text-align: center;
 }
+
+.carousel-item.active {
+    display: flex !important;
+    justify-content: center;
+}
+
+/* Indicateurs */
+.carousel-indicators button {
+    background-color: #000 !important;
+}
+
 /* ====== TITRE ====== */
 section h1 {
   font-size: 30px;
@@ -148,31 +141,6 @@ presentation {
   line-height: 1.7;
   overflow: hidden;
 }
-
-/* Titres et paragraphes */
-presentation h1 {
-  font-size: 3rem;
-  margin-bottom: 25px;
-}
-
-presentation h2 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-
-presentation p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-presentation ul {
-  text-align: left;
-  list-style: disc;
-  padding-left: 25px;
-  margin-bottom: 20px;
-}
-
 /* Animation fade-up */
 .fade-up {
   opacity: 0;
