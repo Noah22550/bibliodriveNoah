@@ -1,154 +1,32 @@
-/* --- Carrousel s'adapte à la taille réelle des images --- */
-#carouselLivres {
-    width: fit-content;               /* largeur = image */
-    margin-left: auto;
-    margin-right: auto;               /* centré */
+.img-custom {
+  width: 100px;        /* Ajuste la taille */
+  border-radius: 20px; /* Arrondi plus fort */
+  border: 2px solid #333;
 }
-
-.carousel-inner {
-    width: 100%;
+.img-custom-large {
+  width: 300px;        /* Ajuste la taille */
+  border-radius: 20px; /* Arrondi plus fort */
+  border: 2px solid #333;
 }
-
+.row {
+  margin-bottom: 20px; /* Espace entre les lignes */
+}
+.form-container {
+  margin-bottom: 30px; /* Espace entre les formulaires */
+}
 .carousel-inner img {
-    display: block;
-    width: auto;                      /* ne pas étirer l’image */
-    height: auto;                     /* garder proportions */
-    max-height: none;                 /* ici = hauteur naturelle */
-    max-width: 100%;                  /* évite dépassement écran */
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-/* Empêche Bootstrap de forcer une hauteur */
-.carousel-item {
-    position: relative;
-    text-align: center;
-}
-
-.carousel-item.active {
-    display: flex !important;
-    justify-content: center;
-}
-
-/* Indicateurs */
-.carousel-indicators button {
-    background-color: #000 !important;
-}
-
-/* ====== TITRE ====== */
-section h1 {
-  font-size: 30px;
-  text-align: center;
-  color: black;
-  margin-bottom: 20px;
-}
-
-/* ====== INPUTS ====== */
-.input-box input {
   width: 100%;
-  padding: 15px;
-  border-radius: 25px;
-  outline: none;
-  background-color: transparent;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  color: black;
-  padding-right: 40px;
-  margin-bottom: 15px;
+  height: auto;
 }
-
-.input-box input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-/* ====== OPTIONS & LIENS ====== */
-.remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: black;
-  margin-bottom: 25px;
-}
-
-.remember-forgot a,
-.register-link a {
-  color: black;
-  text-decoration: none;
-  transition: 0.5s;
-  font-weight: bold;
-}
-
-.remember-forgot a:hover,
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-/* ====== BOUTON ====== */
-.login-btn {
-  width: 100%;
-  padding: 15px;
-  border-radius: 25px;
-  outline: none;
-  border: 0;
-  font-weight: bold;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.5s;
-  color: black;
-  background-color: transparent;
-}
-
-.login-btn:hover {
-  background-color: transparent;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  color: black;
-}
-
-/* ====== LIEN INSCRIPTION ====== */
-.register-link {
-  text-align: center;
-  margin-top: 25px;
-  color: black;
-  font-size: 14px;
-}
-
-.titre a {
-  margin: 0;
-  font-size: 28px;
-  position: r*absolute;
-  left: 50%;
-  transform: translateX(-50%, -50%);
-  color: white;           /* même couleur que le menu */
-  text-decoration: none;  /* supprime le soulignement */
-  font-weight: bold;      /* garde un peu de présence */
-  font-family: inherit;   /* même police que le reste */
-}
-/* Style général */
-presentation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 50px 30px;
-  background: linear-gradient(135deg, #333,black);
-  border-radius: 20px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
-  line-height: 1.7;
-  overflow: hidden;
-}
-/* Animation fade-up */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .carousel-container {
+        display: flex;
+        justify-content: center; /* centre horizontalement */
+        align-items: center;     /* centre verticalement si nécessaire */
+        margin: 3rem auto;       /* marge autour du carrousel */
+        max-width: 800px;        /* largeur max du carrousel */
+    }
+    .carousel-item img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+    }
