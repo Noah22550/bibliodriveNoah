@@ -10,6 +10,9 @@
         include 'entete.php';
         require_once 'connexion.php';
     ?>
+    <div>             
+         <?php include 'inscription.php'; ?>              
+    </div>
     <?php
     $stmt = $connexion->prepare("SELECT photo FROM livre ORDER BY RAND() LIMIT 3");
     $stmt->bindValue(":photo", $photo);

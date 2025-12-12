@@ -14,17 +14,14 @@
            <?php include ('entete.php'); ?>
         </div>
     </div>
-    <div class="row">
         <div class="row">
             <!-- le carrousel -->
             <div class="col-sm-9">
              <?php require_once('caroussel.php'); ?>
             </div>
             <!-- formulaire d'inscription à importer -->
-            <div class="col-sm-3">
-                
-                <?php include 'inscription.php'; ?>
-                
+            <div class="col-sm-3">    
+                <?php include ('inscription.php'); ?>
             </div>
         </div>
     </div> 

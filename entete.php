@@ -21,7 +21,15 @@
             <form class="d-flex" action="recherchelivres.php" method="GET">
                 <input class="form-control me-2" type="text" placeholder="Entrer le nom" name="Auteur">
                 <button class="btn btn-light couleurVert" type="submit">rechercher</button>
+            </div>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">  
+            <div class="col text-end">
+                <img src="moulinssart2.jpg" class="rounded" alt="Cinque Terre" width="200" height="145">
+            </div>
         </div>
     </div>
 </nav>
