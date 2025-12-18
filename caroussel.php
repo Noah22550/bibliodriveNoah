@@ -46,7 +46,6 @@ try {
                 </button>
             <?php endforeach; ?>
         </div>
-        
         <!-- SLIDES (les images qui défilent) -->
         <div class="carousel-inner">
             <?php foreach($livres as $index => $livre): ?>

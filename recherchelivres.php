@@ -1,45 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recherchelivre</title>
+    <title>Recherche de livres - Bibliodrive</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php
-        include 'entete.php';
-        require_once 'connexion.php';
-    ?>
-    <div>             
-         <?php include 'inscription.php'; ?>              
+    <?php include('entete.php'); ?>
+    
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-sm-9">
+                <?php
+                    require_once('connexion.php');
+                    
+                    $search = isset($_GET['Auteur']) ? trim($_GET['Auteur']) : '';
+                    
+                    $sql = "SELECT livre.nolivre, livre.titre, auteur.nom, auteur.prenom 
+                            FROM livre 
+                            INNER JOIN auteur ON livre.noauteur = auteur.noauteur";
+                    
+                    if ($search) {
+                        $sql .= " WHERE auteur.nom LIKE :search OR auteur.prenom LIKE :search";
+                        echo "<h2>Résultats pour : $search</h2>";
+                    } else {
+                        echo "<h2>Tous les livres</h2>";
+                    }
+                    
+                    $sql .= " ORDER BY livre.titre";
+                    
+                    $stmt = $connexion->prepare($sql);
+                    
+                    if ($search) {
+                        $stmt->bindValue(":search", "%$search%");
+                    }
+                    
+                    $stmt->execute();
+                    
+                    echo "<ul class='list-group'>";
+                    while ($livre = $stmt->fetch(PDO::FETCH_OBJ)) {
+                        echo "<a href='detaillivre.php?nolivre=$livre->nolivre' class='list-group-item list-group-item-action'>";
+                        echo "<h5>$livre->titre</h5>";
+                        echo "<small class='text-muted'>$livre->nom $livre->prenom</small>";
+                        echo "</a>";
+                    }
+                    echo "</ul>";
+                ?>
+            </div>
+            <div class="col-sm-3">
+                <?php include('inscription.php'); ?>
+            </div>
+        </div>
     </div>
-    <?php
-    $stmt = $connexion->prepare("SELECT photo FROM livre ORDER BY RAND() LIMIT 3");
-    $stmt->bindValue(":photo", $photo);
-    $stmt->setFetchMode(PDO::FETCH_OBJ);
-    $stmt->execute();
-    echo '<div id="demo" class="carousel slide" data-bs-ride="carousel">';
-    echo '<div class="carousel-inner">';
-    $x = 0;
-    while ($enregistement = $stmt->fetch()) {
-        if ($x == 0) {
-            echo '<div class="carousel-item active"><img src="covers/'.$enregistement->photo.'" alt="photo carousel" class="d-block mx-auto" style="width:25%"></div>';
-            $x = 1;
-        } else {
-            echo '<div class="carousel-item"><img src="covers/'.$enregistement->photo.'" alt="photo carousel" class="d-block mx-auto" style="width:25%"></div>';
-        }
-    }
-    echo '</div>';  // Fermeture du carousel-inner
-    echo '<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">';
-    echo '<span class="carousel-control-prev-icon"></span>';
-    echo '</button>';
-    echo '<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">';
-    echo '<span class="carousel-control-next-icon"></span>';
-    echo '</button>';
-    echo '</div>';
-    ?>
-
 </body>
 </html>
-
-
