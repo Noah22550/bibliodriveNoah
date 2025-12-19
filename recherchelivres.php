@@ -52,7 +52,9 @@ session_start();
                 ?>
             </div>
             <div class="col-sm-3">
-                <?php include('inscription.php'); ?>
+                <?php
+                    include('inscription.php'); 
+                ?>
             </div>
         </div>
     </div>

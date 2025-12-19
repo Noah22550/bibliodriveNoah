@@ -30,3 +30,6 @@
         max-height: 500px;
         object-fit: cover;
     }
+.incorrect {
+  border: 2px solid red;
+}

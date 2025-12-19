@@ -59,7 +59,7 @@ if (!isset($_POST['btnSeConnecter'])) { /* L'entrée btnSeConnecter est vide = l
         <input name="motdepasse" type="text" size ="30"">
         <input type="submit" name="btnSeConnecter"  value="Se connecter">
     </form>';
-        echo "<p style='color:red'> Identifiant ou mot de passe incorrect </p>";
+        echo "<p class ='incorrect'> Identifiant ou mot de passe incorrect </p>";
     }
 }
 ?>
