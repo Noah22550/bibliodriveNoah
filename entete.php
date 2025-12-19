@@ -26,7 +26,6 @@
             </div>
         </div>
     </nav>
-    
     <div class="container-fluid">
         <div class="row">
             <div class="col text-end mt-3">

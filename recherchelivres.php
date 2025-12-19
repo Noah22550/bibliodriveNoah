@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +12,6 @@
 </head>
 <body>
     <?php include('entete.php'); ?>
-    
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-sm-9">

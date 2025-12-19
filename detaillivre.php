@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -52,8 +55,6 @@
                             if ($livre->detail) {
                                 echo "<p class='card-text mt-3'>$livre->detail</p>";
                             }
-                            
-                            echo "<a href='recherchelivres.php' class='btn btn-primary mt-3'>Retour à la liste</a>";
                             echo "</div>";
                             echo "</div>";
                             
