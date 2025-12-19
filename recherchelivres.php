@@ -53,7 +53,10 @@ session_start();
             </div>
             <div class="col-sm-3">
                 <?php
-                    include('inscription.php'); 
+                    //require_once('inscription.php'); 
+                    if (!isset($_SESSION["inscription_completee"])) {
+                        print_r($_SESSION);
+                    }                   
                 ?>
             </div>
         </div>
