@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,6 +15,7 @@ session_start();
             <div class="col-sm-9">
                 <?php
                     require_once('connexion.php');
+                    require_once('config.php');
                     
                     if (isset($_GET['nolivre'])) {
                         $nolivre = $_GET['nolivre'];
@@ -69,8 +67,20 @@ session_start();
                 ?>
             </div>
             <div class="col-sm-3">
-                <?php include('inscription.php'); ?>
-            </div>
+                <?php
+                    // Si l'utilisateur est connecté
+                    if (isset($_SESSION["inscription_completee"])) {
+                        echo "<h5>Bonjour " . '<br/>' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "</h5>";
+                        echo "<p>" . $_SESSION['adresse'] . "</p>";
+                        echo "<p>" . $_SESSION['codepostal'] . " " . $_SESSION['ville'] . "</p>";
+                        echo '<div class="input-group-btn text-center">
+                                <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
+                              </div>';
+                    } else {
+                        // Sinon, afficher le formulaire de connexion
+                        include('inscription.php');
+                    }                  
+                ?>
         </div>
     </div>
 </body>
