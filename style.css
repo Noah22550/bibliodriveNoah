@@ -14,22 +14,40 @@
 .form-container {
   margin-bottom: 30px; /* Espace entre les formulaires */
 }
-.carousel-inner img {
-  width: 100%;
-  height: auto;
+.btn-custom {
+  background-color: #4CAF50; /* Vert */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-    .carousel-container {
-        display: flex;
-        justify-content: center; /* centre horizontalement */
-        align-items: center;     /* centre verticalement si nécessaire */
-        margin: 3rem auto;       /* marge autour du carrousel */
-        max-width: 800px;        /* largeur max du carrousel */
-    }
-    .carousel-item img {
-        width: 100%;
-        max-height: 500px;
-        object-fit: cover;
-    }
-.incorrect {
-  border: 2px solid red;
+.btn-custom:hover {
+  background-color: #45a049; /* Vert foncé au survol */
 }
+body {
+  background-color: #F5ECE1; /* Couleur de fond claire */
+  font-family: Arial, sans-serif;
+}
+h1, h2, h3, h4, h5 {
+  color: #343a40; /* Couleur de texte sombre pour les titres */
+}
+p, label {
+  color: #495057; /* Couleur de texte sombre pour les paragraphes et labels */
+}
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  border-radius: 10px; /* Bords arrondis */
+}
+.btn-danger {
+  background-color: #dc3545; /* Rouge */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-danger:hover {
+  background-color: #c82333; /* Rouge foncé au survol */
+}
+
