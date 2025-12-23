@@ -1,3 +1,6 @@
+<?php
+    require_once('config.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,8 +16,6 @@
         <div class="row">
             <div class="col-sm-9">
                 <?php
-                    require_once('connexion.php');
-                    require_once('config.php');
                     $search = isset($_GET['Auteur']) ? trim($_GET['Auteur']) : '';
                     
                     $sql = "SELECT livre.nolivre, livre.titre, auteur.nom, auteur.prenom 
@@ -52,16 +53,18 @@
                 <?php
                     // Si l'utilisateur est connecté
                     if (isset($_SESSION["inscription_completee"])) {
-                        echo "<h5>Bonjour " . '<br/>' . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "</h5>";
+                        echo "<h5>Bonjour<br/>" . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "</h5>";
                         echo "<p>" . $_SESSION['adresse'] . "</p>";
                         echo "<p>" . $_SESSION['codepostal'] . " " . $_SESSION['ville'] . "</p>";
-                        echo '<div class="input-group-btn text-center">
-                                <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
-                              </div>';
+                        echo '<form method="post">
+                                <div class="input-group-btn text-center">
+                                    <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
+                                </div>
+                            </form>';
                     } else {
                         // Sinon, afficher le formulaire de connexion
                         include('inscription.php');
-                    }                  
+                    }
                 ?>
             </div>
         </div>
