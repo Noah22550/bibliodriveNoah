@@ -60,7 +60,11 @@
                             }    
                             // BOUTON emprunter
                             echo "<div class='mt-4'>";
-                            echo "<a href='ajouterlivre.php' class='btn btn-primary'>📚 emprunter</a>";
+                            echo "<form method='post' action='panier.php'>";
+                            echo "<input type='hidden' name='titre' value='$livre->titre'>";
+                            echo "<input type='hidden' name='auteur' value='$livre->prenom $livre->nom'>";
+                            echo "<button type='submit' name='ajouter' class='btn btn-primary'>📚 emprunter</button>";
+                            echo "</form>";
                             echo "</div>";
                             
                             echo "</div>";
@@ -94,9 +98,6 @@
                     }
                 ?>
         </div>
-    </div>
-</body>
-</html>
     </div>
 </body>
 </html>
