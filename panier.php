@@ -69,7 +69,22 @@
             </div>
             
             <div class="col-sm-3">
-                <?php include('inscription.php'); ?>
+                <?php
+                    // Si l'utilisateur est connecté
+                    if (isset($_SESSION["inscription_completee"])) {
+                        echo "<h5>Bonjour<br/>" . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "</h5>";
+                        echo "<p>" . $_SESSION['adresse'] . "</p>";
+                        echo "<p>" . $_SESSION['codepostal'] . " " . $_SESSION['ville'] . "</p>";
+                        echo '<form method="post">
+                                <div class="input-group-btn text-center">
+                                    <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
+                                </div>
+                            </form>';
+                    } else {
+                        // Sinon, afficher le formulaire de connexion
+                        include('inscription.php');
+                    }
+                ?>
             </div>
         </div>
     </div>
