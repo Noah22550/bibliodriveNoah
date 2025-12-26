@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Mon Panier</title>
@@ -11,80 +10,97 @@
     <?php 
     require_once('config.php');
     
-    // Ajouter un livre au panier
+    // Ajouter un livre
     if (isset($_GET['emprunter'])) {
-        $_SESSION['panier'][] = $_GET['emprunter'];
+        $stmt = $connexion->prepare("SELECT livre.titre, auteur.nom, auteur.prenom 
+                                      FROM livre 
+                                      INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
+                                      WHERE livre.nolivre = :nolivre");
+        $stmt->bindValue(":nolivre", $_GET['emprunter']);
+        $stmt->execute();
+        $livre = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        $_SESSION['panier'][$_GET['emprunter']] = [
+            'titre' => $livre->titre,
+            'auteur' => $livre->prenom . ' ' . $livre->nom
+        ];
     }
 
-    // Supprimer un livre du panier
-    if (isset($_GET['supprimer'])) {
-        unset($_SESSION['panier'][$_GET['supprimer']]);
+    // Annuler un livre
+    if (isset($_GET['annuler'])) {
+        unset($_SESSION['panier'][$_GET['annuler']]);
     }
 
-    // Vider le panier
+    // Valider le panier
     if (isset($_GET['valider'])) {
-        unset($_SESSION['panier']);
+        $stmt = $connexion->prepare("SELECT COUNT(*) as nb FROM emprunter WHERE mel = :mel AND dateretour IS NULL");
+        $stmt->bindValue(":mel", $_SESSION['mel']);
+        $stmt->execute();
+        $nb_actuel = $stmt->fetch(PDO::FETCH_OBJ)->nb;
+        
+        if (isset($_SESSION['panier'])) {
+            $nb_total = $nb_actuel + count($_SESSION['panier']);
+            
+            if ($nb_total > 5) {
+                echo "<div class='container mt-4'><div class='alert alert-danger'>❌ Maximum 5 emprunts ! Vous en avez $nb_actuel, vous voulez en ajouter " . count($_SESSION['panier']) . "</div></div>";
+            } else {
+                foreach ($_SESSION['panier'] as $nolivre => $infos) {
+                    $stmt = $connexion->prepare("INSERT INTO emprunter (mel, nolivre, dateemprunt) VALUES (:mel, :nolivre, NOW())");
+                    $stmt->bindValue(":mel", $_SESSION['mel']);
+                    $stmt->bindValue(":nolivre", $nolivre);
+                    $stmt->execute();
+                }
+                unset($_SESSION['panier']);
+                echo "<div class='container mt-4'><div class='alert alert-success'>✅ Emprunts validés !</div></div>";
+            }
+        }
     }
     
     include('entete.php'); 
+    
+    // Compter emprunts
+    $stmt = $connexion->prepare("SELECT COUNT(*) as nb FROM emprunter WHERE mel = :mel AND dateretour IS NULL");
+    $stmt->bindValue(":mel", $_SESSION['mel']);
+    $stmt->execute();
+    $nb_emprunts = $stmt->fetch(PDO::FETCH_OBJ)->nb;
     ?>
     
     <div class="container mt-4">
         <div class="row">
             <div class="col-sm-9">
                 <h2>Mon Panier</h2>
+                <div class='alert alert-info'>📚 Emprunts en cours : <?= $nb_emprunts ?> / 5</div>
                 
-                <?php
-                if (isset($_SESSION['panier']) && count($_SESSION['panier']) > 0) {
-                    
-                    echo "<table class='table'>";
-                    echo "<tr><th>Titre</th><th>Auteur</th><th></th></tr>";
-                    
-                    foreach ($_SESSION['panier'] as $index => $nolivre) {
-                        
-                        $stmt = $connexion->prepare("SELECT livre.titre, auteur.nom, auteur.prenom 
-                                                      FROM livre 
-                                                      INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
-                                                      WHERE livre.nolivre = :nolivre");
-                        $stmt->bindValue(":nolivre", $nolivre);
-                        $stmt->execute();
-                        $livre = $stmt->fetch(PDO::FETCH_OBJ);
-                        
-                        echo "<tr>";
-                        echo "<td>$livre->titre</td>";
-                        echo "<td>$livre->nom $livre->prenom</td>";
-                        echo "<td><a href='panier.php?supprimer=$index' class='btn btn-danger btn-sm'>Supprimer</a></td>";
-                        echo "</tr>";
-                    }
-                    
-                    echo "</table>";
-                    echo "<a href='panier.php?valider=1' class='btn btn-success'>Valider</a>";
-                    
-                } else {
-                    echo "<p>Panier vide</p>";
-                }
-                ?>
+                <?php if (isset($_SESSION['panier']) && count($_SESSION['panier']) > 0): ?>
+                    <table class='table'>
+                        <tr><th>Titre</th><th>Auteur</th><th></th></tr>
+                        <?php foreach ($_SESSION['panier'] as $nolivre => $infos): ?>
+                            <tr>
+                                <td><?= $infos['titre'] ?></td>
+                                <td><?= $infos['auteur'] ?></td>
+                                <td><a href='panier.php?annuler=<?= $nolivre ?>' class='btn btn-danger btn-sm'>Annuler</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                    <a href='panier.php?valider' class='btn btn-success'>Valider le panier</a>
+                <?php else: ?>
+                    <p>Votre panier est vide</p>
+                <?php endif; ?>
                 
                 <a href='recherchelivres.php' class='btn btn-primary mt-3'>Retour</a>
             </div>
             
             <div class="col-sm-3">
-                <?php
-                    // Si l'utilisateur est connecté
-                    if (isset($_SESSION["inscription_completee"])) {
-                        echo "<h5>Bonjour<br/>" . $_SESSION['prenom'] . " " . $_SESSION['nom'] . "</h5>";
-                        echo "<p>" . $_SESSION['adresse'] . "</p>";
-                        echo "<p>" . $_SESSION['codepostal'] . " " . $_SESSION['ville'] . "</p>";
-                        echo '<form method="post">
-                                <div class="input-group-btn text-center">
-                                    <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
-                                </div>
-                            </form>';
-                    } else {
-                        // Sinon, afficher le formulaire de connexion
-                        include('inscription.php');
-                    }
-                ?>
+                <?php if (isset($_SESSION["inscription_completee"])): ?>
+                    <h5>Bonjour<br/><?= $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></h5>
+                    <p><?= $_SESSION['adresse'] ?></p>
+                    <p><?= $_SESSION['codepostal'] . " " . $_SESSION['ville'] ?></p>
+                    <form method="post">
+                        <button class="btn btn-danger" name="deco" type="submit">Déconnexion</button>
+                    </form>
+                <?php else: ?>
+                    <?php include('inscription.php'); ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

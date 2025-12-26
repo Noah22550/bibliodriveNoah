@@ -12,6 +12,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="panier.php">panier</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="emprunt.php">mes emprunt</a>
+                    </li>
                 </ul>
                 <form class="d-flex" action="recherchelivres.php" method="GET">
                     <input class="form-control me-2" type="text" placeholder="Entrer le nom de l'auteur" name="Auteur" required>

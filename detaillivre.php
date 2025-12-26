@@ -60,11 +60,7 @@
                             }    
                             // BOUTON emprunter
                             echo "<div class='mt-4'>";
-                            echo "<form method='post' action='panier.php'>";
-                            echo "<input type='hidden' name='titre' value='$livre->titre'>";
-                            echo "<input type='hidden' name='auteur' value='$livre->prenom $livre->nom'>";
-                            echo "<button type='submit' name='ajouter' class='btn btn-primary'>📚 emprunter</button>";
-                            echo "</form>";
+                            echo "<a href='panier.php?emprunter=$livre->nolivre' class='btn btn-primary'>📚 emprunter</a>";
                             echo "</div>";
                             
                             echo "</div>";
