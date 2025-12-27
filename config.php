@@ -8,7 +8,6 @@ if (isset($_POST['deco'])) {
     exit();
 }
 require_once('connexion.php');
-
 // Afficher l'en-tête selon le profil
 if (isset($_SESSION['profil']) && $_SESSION['profil'] === 'admin') {
     include 'enteteadmin.php';
