@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include('entete.php'); ?>
+    <?php require_once('config.php') ?>
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-sm-9">

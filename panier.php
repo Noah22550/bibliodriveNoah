@@ -55,10 +55,7 @@
             }
         }
     }
-    
-    include('entete.php'); 
-    
-    // Compter emprunts
+        // Compter emprunts
     $stmt = $connexion->prepare("SELECT COUNT(*) as nb FROM emprunter WHERE mel = :mel AND dateretour IS NULL");
     $stmt->bindValue(":mel", $_SESSION['mel']);
     $stmt->execute();

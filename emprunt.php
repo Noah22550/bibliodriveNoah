@@ -37,7 +37,7 @@
         echo "</div>";
     }
     
-    include('entete.php'); 
+    include('config.php'); 
     ?>
     
     <div class="container mt-4">
