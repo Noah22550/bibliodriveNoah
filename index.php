@@ -1,3 +1,6 @@
+<?php
+    require_once('config.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,9 +13,6 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-           <?php require_once('config.php') ?>
-        </div>
         <div class="row">
             <!-- le carrousel -->
             <div class="col-sm-9">
