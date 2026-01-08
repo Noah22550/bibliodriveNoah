@@ -1,7 +1,5 @@
  <?php 
-    session_start();
-    include 'enteteadmin.php'; // Toujours l'en-tête normal
-    require_once('connexion.php');
+    include 'config.php';
 ?>
 <!DOCTYPE html>
 <html>

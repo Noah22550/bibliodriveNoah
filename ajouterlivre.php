@@ -1,7 +1,6 @@
 <?php
-    session_start();
-    include 'enteteadmin.php'; // Toujours l'en-tête normal
-    require_once('connexion.php');
+
+    include 'config.php';
 
 // Préparation de la requête pour récupérer les auteurs
 $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur ORDER BY nom, prenom");

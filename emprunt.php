@@ -1,3 +1,6 @@
+<?php 
+    include 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +11,6 @@
 </head>
 <body>
     <?php 
-    require_once('config.php');
     
     // Vérifier que l'utilisateur est connecté
     if (!isset($_SESSION["inscription_completee"])) {
