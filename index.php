@@ -1,5 +1,7 @@
-<?php
-    require_once('config.php');
+<?php 
+    session_start();
+    include 'entete.php'; // Toujours l'en-tête normal
+    require_once('connexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,7 +18,7 @@
         <div class="row">
             <!-- le carrousel -->
             <div class="col-sm-9">
-             <?php require_once('caroussel.php'); ?>
+                <?php include ('caroussel.php'); ?>
             </div>
             <!-- formulaire d'inscription à importer -->
             <div class="col-sm-3">    

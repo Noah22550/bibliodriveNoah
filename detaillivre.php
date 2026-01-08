@@ -1,5 +1,7 @@
-<?php
-    require_once('config.php');
+ <?php 
+    session_start();
+    include 'entete.php'; // Toujours l'en-tête normal
+    require_once('connexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

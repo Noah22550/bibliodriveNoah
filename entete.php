@@ -38,31 +38,5 @@
                 </div>
             </div>
         </div>
-        
-        <div class="container-fluid">
-            <div class="row">
-                <!-- le carrousel -->
-                <div class="col-sm-9">
-                    <?php require_once('caroussel.php'); ?>
-                </div>
-                
-                <!-- Colonne de droite : infos utilisateur -->
-                <div class="col-sm-3">    
-                    <?php if (isset($_SESSION["inscription_completee"])): ?>
-                        <div class="card p-3 mt-3">
-                            <h5>Bonjour</h5>
-                            <h6><?= $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></h6>
-                            <p class="mb-1"><?= $_SESSION['adresse'] ?></p>
-                            <p><?= $_SESSION['codepostal'] . " " . $_SESSION['ville'] ?></p>
-                            <form method="post">
-                                <button class="btn btn-danger w-100" name="deco" type="submit">Déconnexion</button>
-                            </form>
-                        </div>
-                    <?php else: ?>
-                        <?php include('inscription.php'); ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div> 
     </body>
 </html>

@@ -1,6 +1,7 @@
-<?php
-require_once('config.php');
-// Vérifier que l'utilisateur est administrateur
+ <?php 
+    session_start();
+    include 'enteteadmin.php'; // Toujours l'en-tête normal
+    require_once('connexion.php');
 ?>
 <!DOCTYPE html>
 <html>

@@ -9,8 +9,9 @@
  </head>
     <body>  
         <?php 
-        require_once('config.php');
-
+   session_start();
+   include 'entete.php'; // Toujours l'en-tête normal
+    require_once('connexion.php');
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['mel'])) {
             echo "<div class='container mt-4'><div class='alert alert-warning'>⚠️ Vous devez être connecté pour accéder au panier.</div></div>";

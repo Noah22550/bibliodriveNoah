@@ -1,5 +1,7 @@
-<?php
-    require_once('config.php');
+ <?php 
+    session_start();
+    include 'entete.php'; // Toujours l'en-tête normal
+    require_once('connexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,7 +13,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php require_once('config.php') ?>
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-sm-9">
